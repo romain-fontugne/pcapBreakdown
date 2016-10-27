@@ -39,7 +39,8 @@ if __name__ == "__main__":
         if isinstance(e.data, dpkt.ip.IP):
             count["v4"][e.data.len] += 1
         elif isinstance(e.data, dpkt.ip6.IP6):
-            count["v6"][e.data.plen] += 1
+            # IPv6 reports only payload length (add 40 bytes for the header)
+            count["v6"][e.data.plen+40] += 1
 
     # Plot the packet size distribution
     plt.figure(figsize=(5,4))
