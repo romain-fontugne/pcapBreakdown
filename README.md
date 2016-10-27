@@ -1,4 +1,5 @@
 # pcapBreakdown
 
 ## Requirements
-- ipsumdump
+- pypcap
+- dpkt
