@@ -21,8 +21,13 @@ def ecdf(d, **kwargs):
 if __name__ == "__main__":
 
     if len(sys.argv) < 2:
-        print "usage: %s input.pcap" % argv[0]
+        print "usage: %s input.pcap [output]" % argv[0]
         exit(-1)
+
+    if len(argv) > 2:
+        outputFile = argv[2]
+    else:
+        outputFile = "pktSize.png"
 
     pc = pcap.pcap(argv[1])
     # pc.setfilter("not icmp")
@@ -44,5 +49,6 @@ if __name__ == "__main__":
     plt.ylabel("CDF")
     plt.xlabel("Packet size")
     plt.legend(loc="best")
-    plt.savefig("pktSize.png")
+    plt.tight_layout()
+    plt.savefig(outputFile)
 
